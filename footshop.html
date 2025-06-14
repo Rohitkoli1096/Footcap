@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footcap - Find your footware</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload banner
+  -->
+  <link rel="preload" href="./assets/images/hero-banner.png" as="image">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
+    }
+    header h1 {
+      font-size: 28px;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1606813909025-03d2d8fbe0df?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h2 {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 36px;
+    }
+
+    .shop-container {
+      display: flex;
+      padding: 30px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h3 {
+        font-family: 'Times New Roman', Times, serif;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .sidebar label {
+      display: block;
+      margin: 5px 0;
+      font-size: 15px;
+    }
+
+    .products {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-left: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .price {
+      color: #e91e63;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      color: #ffc107;
+      font-size: 14px;
+    }
+
+    .btns {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btns button {
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-buy {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn-cart {
+      background: #007bff;
+      color: white;
+    }
+
+    @media(max-width: 768px) {
+      .shop-container {
+        flex-direction: column;
+      }
+
+      .products {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <div class="overlay" data-overlay></div>
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" width="160" height="50" alt="Footcap logo">
+      </a>
+
+      <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.svg" width="190" height="50" alt="Footcap logo">
+        </a>
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <a href="index.html" class="navbar-link">Home</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="footabout.html" class="navbar-link">About</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="footproduct.html" class="navbar-link">Products</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="footshop.html" class="navbar-link">Shop</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="footblog.html" class="navbar-link">Blog</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="footcontact.html" class="navbar-link">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="nav-action-list">
+
+          <li>
+            <button class="nav-action-btn">
+              <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+
+              <span class="nav-action-text">Search</span>
+            </button>
+          </li>
+
+          <li>
+            <a href="#" class="nav-action-btn">
+              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+
+              <span class="nav-action-text">Login / Register</span>
+            </a>
+          </li>
+
+          <li>
+            <button class="nav-action-btn">
+              <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+
+              <span class="nav-action-text">Wishlist</span>
+
+              <data class="nav-action-badge" value="5" aria-hidden="true">5</data>
+            </button>
+          </li>
+
+          <li>
+            <button class="nav-action-btn">
+              <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
+
+              <data class="nav-action-text" value="318.00">Basket: <strong>$318.00</strong></data>
+
+              <data class="nav-action-badge" value="4" aria-hidden="true">4</data>
+            </button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+  
+  <section class="shop-container">
+    <aside class="sidebar">
+      <h3>Category</h3>
+      <label><input type="checkbox"> Casual</label>
+      <label><input type="checkbox"> Sports</label>
+      <label><input type="checkbox"> Running</label>
+      <label><input type="checkbox"> Formal</label>
+      <hr>
+  
+      <h3>Size</h3>
+      <label><input type="checkbox"> 6</label>
+      <label><input type="checkbox"> 7</label>
+      <label><input type="checkbox"> 8</label>
+      <label><input type="checkbox"> 9</label>
+      <label><input type="checkbox"> 10</label>
+      <hr>
+  
+      <h3>Color</h3>
+      <label><input type="checkbox"> Black</label>
+      <label><input type="checkbox"> White</label>
+      <label><input type="checkbox"> Red</label>
+      <label><input type="checkbox"> Blue</label>
+      <label><input type="checkbox"> Grey</label>
+      <hr>
+  
+      <h3>Brand</h3>
+      <label><input type="checkbox"> Nike</label>
+      <label><input type="checkbox"> Adidas</label>
+      <label><input type="checkbox"> Puma</label>
+      <label><input type="checkbox"> Bata</label>
+      <label><input type="checkbox"> Woodland</label>
+      <hr>
+  
+      <h3>Price</h3>
+      <label><input type="checkbox"> Below ₹2,000</label>
+      <label><input type="checkbox"> ₹2,000 – ₹4,000</label>
+      <label><input type="checkbox"> ₹4,000 – ₹6,000</label>
+      <label><input type="checkbox"> ₹6,000 & Above</label>
+      <hr>
+    </aside>
+  
+    <div class="products">
+  
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="https://assets.ajio.com/medias/sys_master/root/20240220/V8Us/65d4c70216fd2c6e6a0ca9fb/-473Wx593H-469581806-white-MODEL.jpg" alt="shoe">
+        <div class="product-info">
+          <h4>Nike Air Zoom</h4>
+          <p class="price">₹4,499</p>
+          <div class="rating">★★★★☆ (120)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRd_CF6A_3PriFFv0Mkr1jBW9T4fV77x_fy79lkhgc3ydvDPzoYjYr0lfRYps0MCcgcPt97CRyad04IiKPHM0NLZ7GDS9Xu7VDwuYIjZNHMGJny71pyO2Vo0w"" alt="shoe">
+        <div class="product-info">
+          <h4>Adidas Originals</h4>
+          <p class="price">₹3,999</p>
+          <div class="rating">★★★★★ (98)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTTrQ-kJ6B0kJwiBS_1Gf-xMFSxLDGGysXBoQuI8z9fumyL8pBDMnywvM-XxQTI9T0Z5vqTpjG5Cw5VIRuwQJZrKKYvHGW0aGr_FwyAaucyhcxw93O1t-5tiQ" alt="shoe">
+        <div class="product-info">
+          <h4>Puma Flex</h4>
+          <p class="price">₹2,499</p>
+          <div class="rating">★★★★☆ (45)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTVtTA7RCKMkuds3twX-TVB6cnONYboPQvhCqPesOGumwmSXuzlPG_kgAQHP_fQvRb4MDhz2LzggippQkYUcRc-7Jq-WhWfl1wW626vmQz9Xf8QV6C4xQJUqg" alt="shoe">
+        <div class="product-info">
+          <h4>Reebok Runner</h4>
+          <p class="price">₹2,899</p>
+          <div class="rating">★★★☆☆ (32)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSKnVrrxPl46rDDS7KWazq2A8w6nI4sSAx_cdnVtcLmWcsLqoL_whDJnVIx48CyykiXNHu6qTlwqB_EwoI3GmpSibd2wUWN1A8dvC-5DQCxDqWWjxJWPDU7rQ" alt="shoe">
+        <div class="product-info">
+          <h4>Skechers Go Walk</h4>
+          <p class="price">₹3,299</p>
+          <div class="rating">★★★★☆ (78)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 6 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT3wQVdzxpyCCuZLWqZw9FR3hOWGNSr4ZkMsEnjkxpKIzWbLV6nUHglnnUkw9aAAb9sKgPYPRhkmU6QPBLK9nzjsF8bvPvaAIqPgd2cdeKdRcKCSv56v3wTyg" alt="shoe">
+        <div class="product-info">
+          <h4>Woodland Hikers</h4>
+          <p class="price">₹4,799</p>
+          <div class="rating">★★★★★ (54)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 7 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTZNdrNFwsRjnpMFogzkocD8T211xEIk8LkOWY2F-6vrX3G8CUGlBsz-AspJ6Bu01AyqfUDy4wwPIEEYrHX3HpfjVw9T0QKgxMh_LBXmetRboJ7YUtTQCCiLi4" alt="shoe">
+        <div class="product-info">
+          <h4>Bata Formal</h4>
+          <p class="price">₹1,999</p>
+          <div class="rating">★★★☆☆ (22)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 8 -->
+      <div class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_andC9hglhpAkch3muyO5ovXgwMyglRuoCQ&s" alt="shoe">
+        <div class="product-info">
+          <h4>Sparx Running Shoes</h4>
+          <p class="price">₹2,299</p>
+          <div class="rating">★★★★☆ (40)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 9 -->
+      <div class="product-card">
+        <img src="file:///C:/Users/Admin/Desktop/github/Footcap/assets/images/product-2.jpg" alt="shoe">
+        <div class="product-info">
+          <h4>Leather Mens Slipper</h4>
+          <p class="price">₹1900.85</p>
+          <div class="rating">★★★☆☆ (32)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 10 -->
+      <div class="product-card">
+        <img src="file:///C:/Users/Admin/Desktop/github/Footcap/assets/images/product-5.jpg" alt="shoe">
+        <div class="product-info">
+          <h4>Nike Air Max 270 SE</h4>
+          <p class="price">₹1200.85</p>
+          <div class="rating">★★★★☆ (78)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 11 -->
+      <div class="product-card">
+        <img src="file:///C:/Users/Admin/Desktop/github/Footcap/assets/images/product-8.jpg" alt="shoe">
+        <div class="product-info">
+          <h4>Simple Fabric Shoe</h4>
+          <p class="price">₹2,899</p>
+          <div class="rating">★★★☆☆ (32)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product 12 -->
+      <div class="product-card">
+        <img src="file:///C:/Users/Admin/Desktop/github/Footcap/assets/images/product-4.jpg" alt="shoe">
+        <div class="product-info">
+          <h4> Air Jordan 7 Retro</h4>
+          <p class="price">₹1,170.85</p>
+          <div class="rating">★★★★☆ (78)</div>
+          <div class="btns">
+            <button class="btn-cart">Add to Cart</button>
+            <button class="btn-buy">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+      <!-- 
+        - #COLLECTION
+      -->
+
+      <section class="section collection">
+        <div class="container">
+
+          <ul class="collection-list has-scrollbar">
+
+            <li>
+              <div class="collection-card" style="background-image: url('./assets/images/collection-1.jpg')">
+                <h3 class="h4 card-title">Men Collections</h3>
+
+                <a href="#" class="btn btn-secondary">
+                  <span>Explore All</span>
+
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
+
+            <li>
+              <div class="collection-card" style="background-image: url('./assets/images/collection-2.jpg')">
+                <h3 class="h4 card-title">Women Collections</h3>
+
+                <a href="#" class="btn btn-secondary">
+                  <span>Explore All</span>
+
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
+
+            <li>
+              <div class="collection-card" style="background-image: url('./assets/images/collection-3.jpg')">
+                <h3 class="h4 card-title">Sports Collections</h3>
+
+                <a href="#" class="btn btn-secondary">
+                  <span>Explore All</span>
+
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PRODUCT
+      -->
+
+      <section class="section product">
+        <div class="container">
+
+          <h2 class="h2 section-title">Bestsellers Products</h2>
+
+          <ul class="filter-list">
+
+            <li>
+              <button class="filter-btn  active">All</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Nike</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Adidas</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Puma</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Bata</button>
+            </li>
+
+            <li>
+              <button class="filter-btn">Apex</button>
+            </li>
+
+          </ul>
+
+         
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer">
+
+    <div class="footer-top section">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo">
+            <img src="./assets/images/logo.svg" width="160" height="50" alt="Footcap logo">
+          </a>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-pinterest"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+        <div class="footer-link-box">
+
+          <ul class="footer-list">
+
+            <li>
+              <p class="footer-list-title">Contact Us</p>
+            </li>
+
+            <li>
+              <address class="footer-link">
+                <ion-icon name="location"></ion-icon>
+
+                <span class="footer-link-text">
+                  At Post Bhilali Tal-Parola, Dist-Jalgoan
+                </span>
+              </address>
+            </li>
+
+            <li>
+              <a href="tel:+557343673257" class="footer-link">
+                <ion-icon name="call"></ion-icon>
+
+                <span class="footer-link-text">+91 7020572471</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="mailto:footcap@help.com" class="footer-link">
+                <ion-icon name="mail"></ion-icon>
+
+                <span class="footer-link-text">rohitkoli1e@gmail.com</span>
+              </a>
+            </li>
+
+          </ul>
+
+          <ul class="footer-list">
+
+            <li>
+              <p class="footer-list-title">My Account</p>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+                <span class="footer-link-text">My Account</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+                <span class="footer-link-text">View Cart</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+                <span class="footer-link-text">Wishlist</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+                <span class="footer-link-text">Compare</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+
+                <span class="footer-link-text">New Products</span>
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="footer-list">
+
+            <p class="footer-list-title">Opening Time</p>
+
+            <table class="footer-table">
+              <tbody>
+
+                <tr class="table-row">
+                  <th class="table-head" scope="row">Mon - Tue:</th>
+
+                  <td class="table-data">8AM - 10PM</td>
+                </tr>
+
+                <tr class="table-row">
+                  <th class="table-head" scope="row">Wed:</th>
+
+                  <td class="table-data">8AM - 7PM</td>
+                </tr>
+
+                <tr class="table-row">
+                  <th class="table-head" scope="row">Fri:</th>
+
+                  <td class="table-data">7AM - 12PM</td>
+                </tr>
+
+                <tr class="table-row">
+                  <th class="table-head" scope="row">Sat:</th>
+
+                  <td class="table-data">9AM - 8PM</td>
+                </tr>
+
+                <tr class="table-row">
+                  <th class="table-head" scope="row">Sun:</th>
+
+                  <td class="table-data"><p style="color: red;">Closed</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+
+          <div class="footer-list">
+
+            <p class="footer-list-title">Newsletter</p>
+
+            <p class="newsletter-text">
+             At Post Bhilali Tal-Parola, Dist-Jalgoan
+            </p>
+
+            <form action="" class="newsletter-form">
+              <input type="email" name="email" required placeholder="Email Address" class="newsletter-input">
+
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+
+        <p class="copyright">
+          &copy; 2025 <a href="#" class="copyright-link">KoliRohit1e</a>. All Rights Reserved
+        </p>
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #GO TO TOP
+  -->
+
+  <a href="#top" class="go-top-btn" data-go-top>
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
