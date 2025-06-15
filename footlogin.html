@@ -2,17 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Modern Login/Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Footcap - Login/Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-.header {
+
+    body {
+      background: linear-gradient(-45deg, #667eea, #764ba2, #ff758c, #ff7eb3);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .header {
 background: var(--white);
 position: fixed;
 top: 0;
@@ -31,21 +42,38 @@ align-items: center;
 padding-block: 20px;
 }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #66ea92, #271b33);
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
     .container {
-      width: 350px;
+      width: 90%;
+      max-width: 400px;
       background: #fff;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: 0.4s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      position: relative;
+      animation: slideUp 0.8s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .shoes {
+      width: 80px;
+      height: 80px;
+      background: #667eea;
+      border-radius: 100%;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #fff;
     }
 
     h2 {
@@ -56,42 +84,50 @@ padding-block: 20px;
 
     .input-box {
       position: relative;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.8rem;
     }
 
     .input-box input {
       width: 100%;
-      padding: 0.8rem;
+      padding: 1rem 0.8rem;
       border: 2px solid #ddd;
-      border-radius: 10px;
+      border-radius: 12px;
       outline: none;
-      transition: border 0.3s;
+      font-size: 1rem;
+      transition: 0.3s;
     }
 
-    .input-box input:focus {
-      border-color: #586083;
-    }
-
-    .input-box span {
+    .input-box label {
       position: absolute;
-      right: 10px;
       top: 50%;
+      left: 15px;
       transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 14px;
-      color: #999;
+      color: #aaa;
+      transition: 0.3s;
+      pointer-events: none;
+    }
+
+    .input-box input:focus + label,
+    .input-box input:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 10px;
+      font-size: 0.8rem;
+      color: #667eea;
+      background: #fff;
+      padding: 0 5px;
     }
 
     .btn {
       width: 100%;
-      padding: 0.8rem;
+      padding: 0.9rem;
       background: #667eea;
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: 0.3s;
       cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
     }
 
     .btn:hover {
@@ -102,7 +138,7 @@ padding-block: 20px;
       text-align: center;
       margin-top: 1rem;
       font-size: 0.9rem;
-      color: #444;
+      color: #555;
     }
 
     .switch-link span {
@@ -111,79 +147,134 @@ padding-block: 20px;
       font-weight: bold;
     }
 
-    .hidden {
+    .hidden { display: none; }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
       display: none;
+      z-index: 10;
     }
   </style>
-    <header class="header" data-header>
-    <a href="#" class="logo">
-      <img src="./assets/images/logo.svg" width="160" height="50" alt="Footcap logo">
-    </a>
-  </header>
 </head>
+
 <body>
 
+  <header class="header" data-header>
+    <a href="#" class="logo">
+    <center> <img src="./assets/images/logo.svg" width="160" height="50" alt="Footcap logo"></center>
+    </a>
+  </header>
+
   <div class="container" id="formContainer">
+    <div class="shoes">👟</div>
+
+    <!-- Login Form -->
     <form id="loginForm">
       <h2>Login</h2>
       <div class="input-box">
-        <input type="email" placeholder="Email" required />
+        <input type="email" id="loginEmail" required placeholder=" " />
+        <label>Email</label>
       </div>
       <div class="input-box">
-        <input type="password" id="loginPass" placeholder="Password" required />
-        <span onclick="togglePassword('loginPass')">👁</span>
+        <input type="password" id="loginPass" required placeholder=" " />
+        <label>Password</label>
       </div>
       <button class="btn" type="submit">Login</button>
       <p class="switch-link">Don't have an account? <span onclick="toggleForm()">Register</span></p>
     </form>
 
+    <!-- Register Form -->
     <form id="registerForm" class="hidden">
       <h2>Register</h2>
       <div class="input-box">
-        <input type="text" placeholder="Full Name" required />
+        <input type="text" id="regName" required placeholder=" " />
+        <label>Full Name</label>
       </div>
       <div class="input-box">
-        <input type="email" placeholder="Email" required />
+        <input type="email" id="regEmail" required placeholder=" " />
+        <label>Email</label>
       </div>
       <div class="input-box">
-        <input type="password" id="regPass" placeholder="Password" required />
-        <span onclick="togglePassword('regPass')">👁</span>
+        <input type="password" id="regPass" required placeholder=" " />
+        <label>Password</label>
       </div>
       <button class="btn" type="submit">Register</button>
       <p class="switch-link">Already have an account? <span onclick="toggleForm()">Login</span></p>
     </form>
   </div>
 
+  <div class="toast" id="toast"></div>
+
   <script>
     const loginForm = document.getElementById("loginForm");
     const registerForm = document.getElementById("registerForm");
+
+    // If user already logged in, redirect
+    window.onload = () => {
+      const loggedIn = localStorage.getItem("currentUser");
+      if (loggedIn) {
+        showToast("Welcome back!", "#28a745");
+        setTimeout(() => window.location.href = "index.html", 1000);
+      }
+    };
 
     function toggleForm() {
       loginForm.classList.toggle("hidden");
       registerForm.classList.toggle("hidden");
     }
 
-    function togglePassword(id) {
-      const input = document.getElementById(id);
-      if (input.type === "password") {
-        input.type = "text";
-      } else {
-        input.type = "password";
-      }
+    function showToast(message, bg = "#333") {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.style.background = bg;
+      toast.style.display = "block";
+      setTimeout(() => toast.style.display = "none", 3000);
     }
 
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Login Successful!");
-      window.location.href = ""; 
-     
+      const email = document.getElementById("loginEmail").value;
+      const pass = document.getElementById("loginPass").value;
+      const userData = localStorage.getItem("user_" + email);
+      if (userData) {
+        const parsed = JSON.parse(userData);
+        if (parsed.password === pass) {
+          localStorage.setItem("currentUser", email);
+          showToast("Login Successful!", "#28a745");
+          setTimeout(() => window.location.href = "index.html", 1000);
+        } else {
+          showToast("Incorrect Password", "#dc3545");
+        }
+      } else {
+        showToast("User not found. Please register.", "#ffc107");
+      }
     });
 
     registerForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Registered Successfully!");
-   
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const pass = document.getElementById("regPass").value;
+      const userKey = "user_" + email;
+      if (localStorage.getItem(userKey)) {
+        showToast("Email already registered.", "#dc3545");
+        return;
+      }
+      const userData = { name: name, email: email, password: pass };
+      localStorage.setItem(userKey, JSON.stringify(userData));
+      showToast("Registered Successfully!", "#28a745");
+      toggleForm();
     });
   </script>
+
 </body>
 </html>
+ 
